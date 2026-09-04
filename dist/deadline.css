@@ -1,0 +1,36 @@
+.deadline-toggle {
+  align-items: center;
+  background: #f6f5ed;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  padding: 13px 15px;
+}
+
+.deadline-toggle input {
+  accent-color: var(--ink);
+  height: 19px;
+  margin: 0;
+  width: 19px;
+}
+
+.deadline-toggle span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.deadline-toggle strong { font-size: 13px; }
+.deadline-toggle small { color: var(--muted); font-size: 12px; }
+.deadline-field.is-disabled { opacity: .42; }
+.deadline-field.is-disabled input { cursor: not-allowed; }
+.status-duration .verdict-mark,
+.status-duration .calendar-visual i { background: var(--acid); }
+.status-duration .deadline-rule { display: none; }
+
+@media (max-width: 520px) {
+  .deadline-toggle { align-items: flex-start; }
+  .deadline-toggle input { flex: 0 0 auto; margin-top: 2px; }
+}
