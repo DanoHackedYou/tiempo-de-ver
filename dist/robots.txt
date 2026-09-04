@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://binge-deadline.tupapidano.chatgpt.site/sitemap.xml
+Sitemap: https://binge-deadline.pages.dev/sitemap.xml
