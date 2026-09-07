@@ -30,7 +30,101 @@
 .status-duration .calendar-visual i { background: var(--acid); }
 .status-duration .deadline-rule { display: none; }
 
+.title-ticker {
+  background: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  color: var(--paper);
+  height: 42px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.title-ticker-track {
+  animation: ticker-loop 34s linear infinite;
+  display: flex;
+  height: 100%;
+  width: max-content;
+}
+
+.title-ticker-set {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.title-ticker-set span {
+  align-items: center;
+  display: flex;
+  font: 500 11px/1 "DM Mono", monospace;
+  letter-spacing: .1em;
+  white-space: nowrap;
+}
+
+.title-ticker-set span::after {
+  background: var(--orange);
+  border-radius: 50%;
+  box-shadow: 6px 0 0 var(--acid);
+  content: "";
+  height: 7px;
+  margin: 0 28px;
+  width: 7px;
+}
+
+.title-ticker:hover .title-ticker-track { animation-play-state: paused; }
+
+.is-revealing .verdict-mark { animation: verdict-pop .46s cubic-bezier(.2,.9,.25,1.25) both; }
+.is-revealing .verdict-kicker,
+.is-revealing h2,
+.is-revealing > p:not(.verdict-kicker),
+.is-revealing .big-number { animation: result-enter .46s ease both; }
+.is-revealing h2 { animation-delay: .06s; }
+.is-revealing > p:not(.verdict-kicker) { animation-delay: .12s; }
+.is-revealing .big-number { animation-delay: .18s; }
+.is-revealing .calendar-visual::after {
+  animation: timeline-run 1.25s cubic-bezier(.65,0,.35,1) both;
+  background: var(--orange);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  bottom: -7px;
+  box-shadow: 0 0 0 2px var(--orange);
+  content: "";
+  height: 10px;
+  left: 0;
+  position: absolute;
+  width: 10px;
+  z-index: 4;
+}
+.is-revealing .deadline-rule { animation: deadline-drop .35s 1.05s ease both; }
+.is-revealing .stats div { animation: result-enter .35s ease both; }
+.is-revealing .stats div:nth-child(1) { animation-delay: .72s; }
+.is-revealing .stats div:nth-child(2) { animation-delay: .9s; }
+.is-revealing .stats div:nth-child(3) { animation-delay: 1.18s; }
+.calendar-visual { position: relative; }
+
+@keyframes ticker-loop { to { transform: translateX(-50%); } }
+@keyframes verdict-pop { from { opacity: 0; transform: scale(.55) rotate(-12deg); } }
+@keyframes result-enter { from { opacity: 0; transform: translateY(12px); } }
+@keyframes timeline-run { from { left: 0; } to { left: calc(100% - 10px); } }
+@keyframes deadline-drop { from { opacity: 0; transform: translateY(-14px); } }
+
 @media (max-width: 520px) {
+  .title-ticker { height: 38px; }
+  .title-ticker-track { animation-duration: 27s; }
+  .title-ticker-set span::after { margin-inline: 20px; }
   .deadline-toggle { align-items: flex-start; }
   .deadline-toggle input { flex: 0 0 auto; margin-top: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-ticker-track { animation: none; }
+  .title-ticker { overflow-x: hidden; }
+  .is-revealing .verdict-mark,
+  .is-revealing .verdict-kicker,
+  .is-revealing h2,
+  .is-revealing > p:not(.verdict-kicker),
+  .is-revealing .big-number,
+  .is-revealing .deadline-rule,
+  .is-revealing .stats div,
+  .is-revealing .calendar-visual::after { animation: none; }
 }
